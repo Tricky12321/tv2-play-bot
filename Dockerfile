@@ -31,6 +31,5 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ADD . /tv2-play-bot
 WORKDIR /tv2-play-bot
 RUN composer up
-VOLUME /tv2-play-bot/storage
 ADD src /tv2-play-bot/src
 CMD php src/main.php
