@@ -32,4 +32,5 @@ ADD . /tv2-play-bot
 WORKDIR /tv2-play-bot
 RUN composer up
 ADD src /tv2-play-bot/src
+WORKDIR /tv2-play-bot
 CMD php src/main.php
