@@ -1,0 +1,17 @@
+{
+    "name": "tricky12321/tv2-play-bot",
+    "autoload": {
+        "psr-4": {
+            "Tv2PlayBot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thue  Vestergaard Iversen",
+            "email": "thue.v.iversen@gmail.com"
+        }
+    ],
+    "require": {
+        "chrome-php/chrome": "^1.6"
+    }
+}
