@@ -3,7 +3,7 @@ require "../vendor/autoload.php";
 
 use HeadlessChromium\BrowserFactory;
 
-$browserFactory = new BrowserFactory();
+$browserFactory = new BrowserFactory("chromium");
 while (true) {
     $browser = $browserFactory->createBrowser(["noSandbox" => true]);
     $credentials = include "config.php";
