@@ -4,11 +4,11 @@ require "../vendor/autoload.php";
 use HeadlessChromium\BrowserFactory;
 
 $browserFactory = new BrowserFactory("chromium");
+$browser = $browserFactory->createBrowser(["noSandbox" => true]);
+$credentials = include "config.php";
+$page = $browser->createPage();
 while (true) {
-    $browser = $browserFactory->createBrowser(["noSandbox" => true]);
-    $credentials = include "config.php";
     try {
-        $page = $browser->createPage();
         $page->navigate('https://mit.tv2.dk/konto/play/enheder')->waitForNavigation();
         $pageTitle = $page->evaluate('document.title')->getReturnValue();
         if ($pageTitle == "Log ind") {
@@ -25,7 +25,7 @@ while (true) {
             echo "Login complete\n";
         }
         $numOfDevices = $page->evaluate('document.querySelectorAll(".datatable__tbody > tr").length.toString();')->getReturnValue();
-        while($numOfDevices > 0) {
+        while ($numOfDevices > 0) {
             $deviceName = $page->evaluate('document.querySelector(".datatable__tbody > tr > td:nth-child(1) > strong").innerHTML.toString()')->getReturnValue();
             $page->evaluate('document.querySelector(".datatable__tbody > tr:nth-child(1) > td:nth-child(4) > button").click()');
             sleep(1);
@@ -33,9 +33,8 @@ while (true) {
             echo "Removed device $deviceName...\n";
             sleep(1);
         }
-        echo "Removed all devices\n";
     } finally {
-        $browser->close();
+
     }
     sleep(300);
 }
